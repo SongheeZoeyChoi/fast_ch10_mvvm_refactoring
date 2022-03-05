@@ -32,7 +32,8 @@ class DetailViewController: UIViewController {
 
 //    var name: String?
 //    var bounty: Int?
-    var bountyInfo: BountyInfo?
+//    var bountyInfo: BountyInfo?
+    var viewModel = DetailViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,7 @@ class DetailViewController: UIViewController {
 //            bountyLabel.text = "\(bounty)"
 //        }
         
-        if let bountyInfo = self.bountyInfo {
+        if let bountyInfo = self.viewModel.bountyInfo {
             imgView.image = bountyInfo.image
             nameLabel.text = bountyInfo.name
             bountyLabel.text = "\(bountyInfo.bounty)"
@@ -58,3 +59,14 @@ class DetailViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 }
+
+class DetailViewModel {
+    // Model
+    var bountyInfo: BountyInfo?
+    
+    // BountyVC 에서 넘겨 받을 떄 업데이트 해 주기 위한 메소드 추가!!
+    func update(model: BountyInfo?) {
+        bountyInfo = model
+    }
+}
+ 
