@@ -30,9 +30,6 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var bountyLabel: UILabel!
 
-//    var name: String?
-//    var bounty: Int?
-//    var bountyInfo: BountyInfo?
     var viewModel = DetailViewModel()
     
     override func viewDidLoad() {
@@ -41,13 +38,6 @@ class DetailViewController: UIViewController {
     }
     
     func updateUI() {
-//        if let name = self.name, let bounty = self.bounty {
-//            let img = UIImage(named: "\(name).jpg")
-//            imgView.image = img
-//            nameLabel.text = name
-//            bountyLabel.text = "\(bounty)"
-//        }
-        
         if let bountyInfo = self.viewModel.bountyInfo {
             imgView.image = bountyInfo.image
             nameLabel.text = bountyInfo.name
@@ -66,7 +56,7 @@ class DetailViewModel {
     
     // BountyVC 에서 넘겨 받을 떄 업데이트 해 주기 위한 메소드 추가!!
     func update(model: BountyInfo?) {
-        bountyInfo = model
+        bountyInfo = model  
     }
 }
  

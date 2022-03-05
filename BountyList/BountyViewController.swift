@@ -36,7 +36,6 @@ class BountyViewController: UIViewController, UITableViewDataSource, UITableView
             if let index = sender as? Int {
                 
                 let bountyInfo = viewModel.bountyInfoList[index]
-//                vc?.bountyInfo = bountyInfo
                 vc?.viewModel.update(model: bountyInfo)
                 
             }
@@ -57,11 +56,8 @@ class BountyViewController: UIViewController, UITableViewDataSource, UITableView
             return UITableViewCell()
         }
         
-//        let bountyInfo = viewModel.bountyInfoList[indexPath.row]
         let bountyInfo = viewModel.bountyInfo(at:indexPath.row)
-        cell.imgView.image = bountyInfo.image
-        cell.nameLabel.text = bountyInfo.name
-        cell.bountyLabel.text = "\(bountyInfo.bounty)"
+        cell.update(info: bountyInfo)
         return cell
         
     }
@@ -77,19 +73,12 @@ class ListCell: UITableViewCell {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var bountyLabel: UILabel!
-}
-
-struct BountyInfo {
-    let name : String
-    let bounty : Int
     
-    var image : UIImage? {
-        return UIImage(named: "\(name).jpg")
-    }
-    
-    init(name: String, bounty: Int) {
-        self.name = name
-        self.bounty = bounty
+    // View 리팩토링
+    func update(info: BountyInfo) {
+        imgView.image = info.image
+        nameLabel.text = info.name
+        bountyLabel.text = "\(info.bounty)"
     }
 }
 
